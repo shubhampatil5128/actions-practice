@@ -1,14 +1,19 @@
-name:  First Actions
+name: First-Actions-Job
 
 on: push
 
 jobs:
-    testing-job:
-        name: testing-job
-        runs-on: ubuntu-latest
-        steps:
-        - name: welcome message
-          run: echo "This is the first job"
-
+  TestKnowledge:
+     name: learn
+     runs-on: ubuntu-latest
+     steps:
+     - name: Checkout
+       uses: actions/checkout@v4
+     - name: welcome message
+       run: echo "welcome to my first project"
+     - name: see the files
+       run: ls -al
+     - name: view the contents of file
+       run: cat "README.md"
 
 
