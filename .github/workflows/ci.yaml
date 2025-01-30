@@ -10,10 +10,11 @@ jobs:
      - name: Checkout
        uses: actions/checkout@v4
      - name: welcome message
-       run: echo "welcome to my first project"
-     - name: see the files
-       run: ls -al
-     - name: view the contents of file
-       run: cat "README.md"
+       run: |
+          echo "welcome to my first job"
+          ls -ltra
+          cat README.md
+    #  - name: run ascii command
+    #    run: cowsay -f tiger "I am the king of the jungle" >> cowsay.txt  
 
 
