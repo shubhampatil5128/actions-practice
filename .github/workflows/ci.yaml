@@ -1,0 +1,14 @@
+name:  First Actions
+
+on: push
+
+jobs:
+    testing-job:
+        name: testing-job
+        runs-on: ubuntu-latest
+        steps:
+        - name: welcome message
+          run: echo "This is the first job"
+
+
+
