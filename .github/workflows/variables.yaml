@@ -8,13 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     -   name: build the image
-        run: echo "docker build -t docker.io/{{vars.username}}/ubuntu:latest ."
+        run: echo "docker build -t docker.io/${{vars.USERNAME}}/ubuntu:latest ."
 
     - name: docker login
-      run: echo "docker login -u {{ vars.username }} -p {{ secret.password }} -h docker.io" 
+      run: echo "docker login -u ${{ vars.username }} -p {{ secrets.password }} -h docker.io" 
 
     - name: docker push
-      run: echo "docker push docker.io/{{ vars.username }}/ubuntu:latest"
+      run: echo "docker push docker.io/${{ vars.username }}/ubuntu:latest"
 
   Run:
     needs: docker
