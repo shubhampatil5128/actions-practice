@@ -3,18 +3,32 @@ name: First-Actions-Job
 on: push
 
 jobs:
-  TestKnowledge:
-     name: learn
-     runs-on: ubuntu-latest
-     steps:
-     - name: Checkout
-       uses: actions/checkout@v4
-     - name: welcome message
-       run: |
-          echo "welcome to my first job"
-          ls -ltra
-          cat README.md
-    #  - name: run ascii command
-    #    run: cowsay -f tiger "I am the king of the jungle" >> cowsay.txt  
+   create-file:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
+      - name: create file
+        run: |
+           sudo apt update -y 
+           sudo apt install cowsay -y
+           cowsay -f dragon "I am king of fire am dragon" >> dragon.txt
+
+      - name: upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+           name: dragon-file
+           path: dragon.txt
+
+   check-file:
+       needs: create-file
+       runs-on: ubuntu-latest
+       steps:
+       - name: download artifact
+         uses: actions/download-artifact@v4
+         with:
+           name: dragon-file
+       - name: ckeckfile
+         run: grep -i "dragon" dragon.txt
 
