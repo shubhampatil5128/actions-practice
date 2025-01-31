@@ -1,23 +1,21 @@
-name: second-workflow
+name: scripts
 
 on: push
 
 jobs:
-   second-sample-job:
-       name: sample-2
-       runs-on: ubuntu-latest
-       steps:
-       - name: Checkout
-         uses: actions/checkout@v4
-         
-       - name: install library cowsay
-         run: sudo apt install cowsay -y
+  executing-scripts:
+    name: shell-scripts
+    runs-on: ubuntu-latest
+    stages:
+    - name: checkout
+      uses: actions/checkout@v4
 
-       - name: run ascii from library
-         run: cowsay -f dragon "I am the friend of farmer" >> bull.txt
+    - name: List the files
+      run: ls -al
 
-       - name: check the file
-         run: ls | grep -i "bull"
-         
-       - name: list the contents of file
-         run: cat bull.txt
+    - name: run the script
+      run: |
+         chmod +x nginx.sh
+         sh nginx.sh
+    - name: check nginx
+      run: systemctl status nginx
