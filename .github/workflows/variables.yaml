@@ -1,33 +1,6 @@
-name: variables
+name: secrets
 
 on: push
 
-env:
-    Registry: docker.io
-    Username: shubham
-    Password: shubham@123
-    host: dockerhub
-
 jobs:
-    docker-build:
-        name: build
-        runs-on: ubuntu-latest
-        steps:
-        - name: bild the docker image
-          run: echo "docker build -t ${{ env.Registry }}/$Username/ubuntu:latest ."
-
-    docker-login:
-        needs: docker-build
-        name: login
-        runs-on: ubuntu-latest
-        steps:
-        - name: login to dockerhub
-          run: echo "docker login -u $Username -p $Password -h $host"
-
-    docker-push:
-        needs: docker-login
-        name: push
-        runs-on: ubuntu-latest
-        steps:
-        - name: push to dockerhub
-          run: echo "docker push $Registry/$Username/ubuntu:latest"
+  
