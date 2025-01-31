@@ -29,5 +29,5 @@ jobs:
         name: push
         runs-on: ubuntu-latest
         steps:
-            name: push to dockerhub
-            run: echo "docker push $Registry/Username/ubuntu:latest"
+        - name: push to dockerhub
+          run: echo "docker push $Registry/Username/ubuntu:latest"
