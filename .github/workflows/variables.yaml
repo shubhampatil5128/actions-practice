@@ -22,7 +22,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - name: login to dockerhub
-          run: echo "docker login -u $username -p $Password -h $host"
+          run: echo "docker login -u $Username -p $Password -h $host"
 
     docker-push:
         needs: docker-login
@@ -30,4 +30,4 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - name: push to dockerhub
-          run: echo "docker push $Registry/Username/ubuntu:latest"
+          run: echo "docker push $Registry/$Username/ubuntu:latest"
