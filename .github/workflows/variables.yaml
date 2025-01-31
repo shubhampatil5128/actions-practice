@@ -3,4 +3,23 @@ name: secrets
 on: push
 
 jobs:
-  
+  docker:
+    name: build image
+    runs-on: ubuntu-latest
+    steps:
+    -   name: build the image
+        run: echo "docker build -t docker.io/{{vars.USERNAME}}/ubuntu:latest ."
+
+    - name: docker login
+      run: echo "docker login -u {{ vars.USERNAME }} -p {{ secret.PASSWORD }} -h docker.io" 
+
+    - name: docker push
+      run: echo "docker push docker.io/{{ vars.USERNAME }}/ubuntu:latest"
+
+  Run:
+    name: Run the container
+    runs-on: ubuntu-latest
+    steps:
+    -  name: continer create from image 
+       run: echo "docker run -d -p 80:80 --name api-container docker.io/{{ vars.USERNAME }}/ubuntu:latest"  
+
