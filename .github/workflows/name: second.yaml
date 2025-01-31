@@ -6,7 +6,7 @@ jobs:
   executing-scripts:
     name: shell-scripts
     runs-on: ubuntu-latest
-    stages:
+    steps:
     - name: checkout
       uses: actions/checkout@v4
 
